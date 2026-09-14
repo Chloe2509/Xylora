@@ -226,7 +226,7 @@
     <section class="card account">
 
       <h2>Account</h2>
-
+<button onclick="signInWithDiscord()">Continue with Discord</button>
       <input
         id="email"
         type="email"
@@ -462,7 +462,18 @@
 
       }
     );
+async function signInWithDiscord() {
+  const { error } = await supabaseClient.auth.signInWithOAuth({
+    provider: "discord",
+    options: {
+      redirectTo: window.location.href
+    }
+  });
 
+  if (error) {
+    setMessage(error.message, true);
+  }
+}
   </script>
 
 </body>
