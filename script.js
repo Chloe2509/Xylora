@@ -222,14 +222,37 @@ const defaults = {
 };
 
 
-document.querySelectorAll(".draggable")
-  .forEach(el => {
+document.querySelectorAll(".draggable").forEach(el => {
+  let dragging = false;
+  let offsetX = 0;
+  let offsetY = 0;
 
-    let drag = false;
-    let ox = 0;
-    let oy = 0;
+  el.addEventListener("pointerdown", e => {
+    if (e.target.closest("audio,button,a,input,textarea,select")) return;
 
-    el.addEventListener("pointerdown", e => {
+    dragging = true;
+    const r = el.getBoundingClientRect();
+
+    offsetX = e.clientX - r.left;
+    offsetY = e.clientY - r.top;
+
+    el.setPointerCapture(e.pointerId);
+  });
+
+  el.addEventListener("pointermove", e => {
+    if (!dragging) return;
+
+    const canvas = document.getElementById("canvas");
+    const r = canvas.getBoundingClientRect();
+
+    el.style.left = `${e.clientX - r.left - offsetX}px`;
+    el.style.top = `${e.clientY - r.top - offsetY}px`;
+  });
+
+  el.addEventListener("pointerup", () => {
+    dragging = false;
+  });
+});
 
       if (
         e.target.closest(
