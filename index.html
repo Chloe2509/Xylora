@@ -1,502 +1,334 @@
-*{
-  box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  margin:0;
-  background:#080611;
-  color:#f5efff;
-  font-family:Arial,sans-serif;
-}
-
-.topbar{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  height:90px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 3%;
-  background:rgba(7,5,18,.95);
-  border-bottom:1px solid rgba(170,110,255,.2);
-}
-
-.logo{
-  width:300px;
-  height:90px;
-  display:flex;
-  align-items:center;
-  flex-shrink:0;
-  overflow:visible;
-}
-
-.xylora-logo{
-  width:290px;
-  height:88px;
-  display:block;
-  overflow:visible;
-}
-
-nav{
-  display:flex;
-  gap:32px;
-  align-items:center;
-}
-
-nav a{
-  color:#eee5ff;
-  text-decoration:none;
-  font-weight:700;
-}
-
-nav a:hover{
-  color:#b77aff;
-}
-
-#planButton{
-  background:#160d2b;
-  color:#eee5ff;
-  border:1px solid #7440b8;
-  border-radius:15px;
-  padding:12px 20px;
-  font-weight:700;
-}
-
-
-/* HERO */
-
-.hero{
-  min-height:650px;
-  padding:130px 20px 100px;
-  text-align:center;
-  background:
-    radial-gradient(circle at 50% 35%,#302060 0%,#150d2d 35%,#080611 75%);
-}
-
-.hero h1{
-  max-width:1000px;
-  margin:0 auto 25px;
-  font-family:Georgia,serif;
-  font-size:76px;
-  line-height:1.05;
-  background:linear-gradient(90deg,#fff,#d8a8ff,#8d4fff);
-  -webkit-background-clip:text;
-  color:transparent;
-}
-
-.hero p{
-  max-width:760px;
-  margin:0 auto 40px;
-  color:#bdaed5;
-  font-size:19px;
-  line-height:1.6;
-}
-
-.primary-btn{
-  display:inline-block;
-  padding:17px 28px;
-  border-radius:16px;
-  background:linear-gradient(135deg,#a45cff,#6731ed);
-  color:white;
-  text-decoration:none;
-  font-weight:800;
-  box-shadow:0 0 35px rgba(132,65,255,.35);
-}
-
-
-/* BUILDER */
-
-.builder{
-  display:grid;
-  grid-template-columns:440px 1fr;
-  gap:28px;
-  padding:60px 3%;
-  background:#0b0715;
-}
-
-.controls{
-  background:rgba(30,19,52,.85);
-  border:1px solid rgba(180,120,255,.2);
-  border-radius:25px;
-  padding:28px;
-}
-
-.controls h2{
-  margin-top:0;
-  font-family:Georgia,serif;
-  font-size:34px;
-}
-
-.controls h3{
-  margin-top:28px;
-  color:#c391ff;
-}
-
-.controls label{
-  display:block;
-  margin:18px 0 8px;
-  font-weight:700;
-}
-
-.controls input,
-.controls textarea,
-.controls select{
-  width:100%;
-  padding:14px;
-  border-radius:14px;
-  border:1px solid rgba(180,120,255,.25);
-  background:#211932;
-  color:white;
-  outline:none;
-}
-
-.controls textarea{
-  min-height:115px;
-  resize:vertical;
-}
-
-.controls input:focus,
-.controls textarea:focus,
-.controls select:focus{
-  border-color:#9d5cff;
-}
-
-.button-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-
-.button-grid button,
-.layout-buttons button{
-  padding:12px;
-  border-radius:12px;
-  border:1px solid #59328c;
-  background:#211638;
-  color:#eee5ff;
-  cursor:pointer;
-}
-
-.button-grid button:hover,
-.layout-buttons button:hover{
-  background:#352052;
-}
-
-.layout-buttons{
-  display:flex;
-  gap:10px;
-  margin-top:25px;
-}
-
-#status{
-  color:#bd91ff;
-}
-
-
-/* PREVIEW */
-
-.preview-area{
-  min-width:0;
-}
-
-.preview-area h2{
-  margin-top:0;
-  color:#b891ed;
-}
-
-#canvas{
-  position:relative;
-  width:100%;
-  min-height:720px;
-  overflow:hidden;
-  border-radius:30px;
-  background:#120d22;
-}
-
-.profile-card{
-  position:relative;
-  width:100%;
-  min-height:720px;
-  overflow:hidden;
-  border-radius:30px;
-  background:linear-gradient(120deg,#17102f,#633cff);
-  border:1px solid rgba(210,170,255,.25);
-  box-shadow:0 0 60px rgba(110,55,255,.2);
-}
-
-
-/* DRAGGABLE */
-
-.draggable{
-  position:absolute;
-  cursor:grab;
-  touch-action:none;
-}
-
-.draggable:active{
-  cursor:grabbing;
-}
-
-
-/* AVATAR */
-
-.avatar-box{
-  left:7%;
-  top:7%;
-  width:124px;
-  height:124px;
-  overflow:hidden !important;
-  resize:none !important;
-  border-radius:50%;
-  z-index:10;
-  background:#241b3c;
-  border:3px solid #d9c6ff;
-  box-shadow:0 0 25px rgba(170,110,255,.5);
-}
-
-.avatar-box img{
-  width:100%;
-  height:100%;
-  display:block;
-  object-fit:cover;
-}
-
-.avatar-box:empty::after{
-  content:"Profile Picture";
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:white;
-  font-size:13px;
-}
-
-
-/* NAME */
-
-.name-box{
-  left:7%;
-  top:29%;
-  z-index:20;
-  width:auto;
-}
-
-.name-box h2{
-  margin:0;
-  font-family:Georgia,serif;
-  font-size:38px;
-  color:white;
-  white-space:nowrap;
-}
-
-
-/* USERNAME */
-
-.username-box{
-  left:7%;
-  top:37%;
-  z-index:20;
-  width:auto;
-}
-
-.username-box p{
-  margin:0;
-  color:#d8baff;
-  font-weight:700;
-  white-space:nowrap;
-}
-
-
-/* BIO */
-
-.bio-box{
-  left:7%;
-  top:42%;
-  width:70%;
-  z-index:20;
-}
-
-.bio-box p{
-  margin:0;
-  color:rgba(255,255,255,.75);
-  line-height:1.5;
-}
-
-
-/* AUDIO */
-
-.audio-player-box{
-  left:7%;
-  top:51%;
-  width:440px;
-  max-width:80%;
-  padding:18px;
-  border-radius:20px;
-  background:rgba(25,16,55,.8);
-  border:1px solid rgba(190,140,255,.25);
-  z-index:15;
-}
-
-.audio-player-box audio{
-  width:100%;
-  margin-top:12px;
-}
-
-#audioName{
-  font-weight:700;
-}
-
-
-/* LINKS */
-
-.links-box{
-  left:7%;
-  top:67%;
-  width:75%;
-  z-index:15;
-}
-
-#previewLinks{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-}
-
-.link-pill{
-  display:inline-block;
-  padding:9px 14px;
-  border-radius:12px;
-  background:rgba(35,22,70,.8);
-  border:1px solid rgba(180,120,255,.3);
-  color:#eee5ff;
-}
-
-
-/* SECTIONS */
-
-.sections-box{
-  left:7%;
-  top:78%;
-  width:80%;
-  z-index:15;
-}
-
-#previewSections{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-}
-
-.section-pill{
-  padding:10px 15px;
-  border-radius:12px;
-  background:rgba(40,25,80,.8);
-  border:1px solid rgba(180,120,255,.3);
-}
-
-
-/* PREMIUM */
-
-.premium{
-  padding:100px 20px;
-  text-align:center;
-  background:
-    radial-gradient(circle,#28164c,#090611 70%);
-}
-
-.premium h2{
-  font-family:Georgia,serif;
-  font-size:45px;
-}
-
-.premium p{
-  color:#bdaed5;
-}
-
-.premium strong{
-  display:inline-block;
-  margin-top:15px;
-  font-size:22px;
-  color:#c99cff;
-}
-
-
-/* MOBILE */
-
-@media(max-width:900px){
-
-  .builder{
-    grid-template-columns:1fr;
-  }
-
-  .hero h1{
-    font-size:52px;
-  }
-
-}
-
-@media(max-width:700px){
-
-  .topbar{
-    height:70px;
-    padding:0 15px;
-  }
-
-  .logo{
-    width:205px;
-    height:70px;
-  }
-
-  .xylora-logo{
-    width:200px;
-    height:68px;
-  }
-
-  nav{
-    display:none;
-  }
-
-  #planButton{
-    padding:9px 12px;
-  }
-
-  .hero{
-    min-height:550px;
-    padding-top:90px;
-  }
-
-  .hero h1{
-    font-size:42px;
-  }
-
-  .hero p{
-    font-size:16px;
-  }
-
-  .builder{
-    padding:30px 15px;
-  }
-
-  .controls{
-    padding:20px;
-  }
-
-  #canvas{
-    min-height:650px;
-  }
-
-  .profile-card{
-    min-height:650px;
-  }
-
-  .audio-player-box{
-    width:80%;
-  }
-
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Xylora</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="topbar">
+
+  <div class="logo">
+    <svg class="xylora-logo" viewBox="0 0 300 90">
+      <defs>
+        <linearGradient id="xyloraPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#ffffff"/>
+          <stop offset="35%" stop-color="#d7a8ff"/>
+          <stop offset="70%" stop-color="#9b5cff"/>
+          <stop offset="100%" stop-color="#642cff"/>
+        </linearGradient>
+
+        <filter id="xyloraGlow">
+          <feGaussianBlur stdDeviation="3" result="blur"/>
+          <feMerge>
+            <feMergeNode in="blur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+
+      <ellipse
+        cx="78"
+        cy="45"
+        rx="70"
+        ry="29"
+        fill="none"
+        stroke="url(#xyloraPurple)"
+        stroke-width="4"
+        transform="rotate(-22 78 45)"
+        filter="url(#xyloraGlow)"
+      />
+
+      <ellipse
+        cx="78"
+        cy="45"
+        rx="70"
+        ry="29"
+        fill="none"
+        stroke="#e7c8ff"
+        stroke-width="1"
+        opacity=".8"
+        transform="rotate(-22 78 45)"
+      />
+
+      <text
+        x="35"
+        y="67"
+        font-family="Georgia, serif"
+        font-size="72"
+        font-weight="bold"
+        font-style="italic"
+        fill="url(#xyloraPurple)"
+        filter="url(#xyloraGlow)"
+      >X</text>
+
+      <path
+        d="M78 7 L82 19 L94 23 L82 27 L78 40 L74 27 L62 23 L74 19 Z"
+        fill="#e1baff"
+        filter="url(#xyloraGlow)"
+      />
+
+      <text
+        x="94"
+        y="64"
+        font-family="Georgia, serif"
+        font-size="43"
+        font-weight="bold"
+        fill="#f2eaff"
+      >ylora</text>
+    </svg>
+  </div>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#builder">Create</a>
+    <a href="#premium">Premium</a>
+  </nav>
+
+  <button id="planButton">🆓 Free</button>
+
+</header>
+
+
+<main>
+
+<section id="home" class="hero">
+
+  <h1>Create your world.</h1>
+
+  <p>
+    Build a beautiful profile for your links, music,
+    work, communities, and files.
+  </p>
+
+  <a href="#builder" class="primary-btn">Start Creating</a>
+
+</section>
+
+
+<section id="builder" class="builder">
+
+  <div class="controls">
+
+    <h2>Profile Builder</h2>
+
+    <label>Display Name</label>
+    <input id="displayName" placeholder="Your Name">
+
+    <label>Username</label>
+    <input id="username" placeholder="@username">
+
+    <label>Bio</label>
+    <textarea id="bio" placeholder="Tell people about yourself"></textarea>
+
+
+    <label>Plan</label>
+
+    <select id="planSelect">
+      <option value="free">Free</option>
+      <option value="premium">Premium — $10/month</option>
+    </select>
+
+
+    <label>Profile Picture</label>
+    <input id="avatarInput" type="file" accept="image/*">
+
+
+    <label>Background Style</label>
+
+    <select id="backgroundStyle">
+      <option value="gradient">Gradient</option>
+      <option value="solid">Solid</option>
+    </select>
+
+
+    <label>Background Color</label>
+    <input id="bgColor" type="color" value="#15102e">
+
+    <label>Second Color</label>
+    <input id="bgColor2" type="color" value="#6d3cff">
+
+
+    <label>Premium Background</label>
+    <input id="bgImageInput" type="file" accept="image/*">
+
+
+    <label>Font</label>
+
+    <select id="fontSelect">
+      <option value="Georgia, serif">Elegant Serif</option>
+      <option value="Arial, sans-serif">Modern</option>
+      <option value="Verdana, sans-serif">Clean</option>
+      <option value="Courier New, monospace">Monospace</option>
+    </select>
+
+
+    <h3>🎵 Audio</h3>
+
+    <input id="audioInput" type="file" accept="audio/*">
+
+
+    <h3>Links</h3>
+
+    <div class="button-grid">
+
+      <button data-link="Instagram">Instagram</button>
+      <button data-link="Pinterest">Pinterest</button>
+      <button data-link="TikTok">TikTok</button>
+      <button data-link="Spotify">Spotify</button>
+      <button data-link="YouTube">YouTube</button>
+      <button data-link="Discord">Discord</button>
+      <button data-link="GitHub">GitHub</button>
+      <button data-link="Custom">Custom</button>
+
+    </div>
+
+
+    <h3>Sections</h3>
+
+    <div class="button-grid">
+
+      <button data-section="Music">Music</button>
+      <button data-section="Work">Work</button>
+      <button data-section="Communities">Communities</button>
+      <button data-section="Files">Files</button>
+
+    </div>
+
+
+    <div class="layout-buttons">
+
+      <button id="resetLayout">Reset Layout</button>
+      <button id="saveProfile">Save Profile</button>
+
+    </div>
+
+    <p id="status">Free plan</p>
+
+  </div>
+
+
+  <div class="preview-area">
+
+    <h2>Live Preview</h2>
+
+    <div id="canvas">
+
+      <div class="profile-card">
+
+
+        <!-- PROFILE PICTURE -->
+
+        <div
+          class="draggable avatar-box"
+          data-key="avatar"
+        >
+          <img
+            id="avatar"
+            src=""
+            alt=""
+          >
+        </div>
+
+
+        <!-- NAME — MOVES ALONE -->
+
+        <div
+          class="draggable name-box"
+          data-key="name"
+        >
+          <h2 id="previewName">Your Name</h2>
+        </div>
+
+
+        <!-- USERNAME — MOVES ALONE -->
+
+        <div
+          class="draggable username-box"
+          data-key="username"
+        >
+          <p id="previewUsername">@username</p>
+        </div>
+
+
+        <!-- BIO — MOVES ALONE -->
+
+        <div
+          class="draggable bio-box"
+          data-key="bio"
+        >
+          <p id="previewBio"></p>
+        </div>
+
+
+        <!-- AUDIO — MOVES ALONE -->
+
+        <div
+          class="draggable audio-player-box"
+          data-key="audio"
+        >
+
+          <div id="audioName">
+            No music selected
+          </div>
+
+          <audio
+            id="audioPlayer"
+            controls
+          ></audio>
+
+        </div>
+
+
+        <!-- LINKS — MOVES ALONE -->
+
+        <div
+          class="draggable links-box"
+          data-key="links"
+        >
+          <div id="previewLinks"></div>
+        </div>
+
+
+        <!-- SECTIONS — MOVES ALONE -->
+
+        <div
+          class="draggable sections-box"
+          data-key="sections"
+        >
+          <div id="previewSections"></div>
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="premium" class="premium">
+
+  <h2>💎 Xylora Premium</h2>
+
+  <p>
+    Unlock animated profile pictures,
+    custom background images, and more.
+  </p>
+
+  <strong>$10/month</strong>
+
+</section>
+
+</main>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
