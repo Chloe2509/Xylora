@@ -11,28 +11,37 @@
 
 <header class="topbar">
 
+  <!-- XYLORA LOGO -->
   <div class="logo">
+
     <svg
       class="xylora-logo"
-      viewBox="0 0 260 80"
+      viewBox="0 0 300 90"
       xmlns="http://www.w3.org/2000/svg"
     >
 
       <defs>
 
         <linearGradient
-          id="logoGradient"
+          id="xyloraPurple"
           x1="0%"
           y1="0%"
           x2="100%"
           y2="100%"
         >
-          <stop offset="0%" stop-color="#f0c8ff"/>
-          <stop offset="45%" stop-color="#b47cff"/>
-          <stop offset="100%" stop-color="#7040ff"/>
+          <stop offset="0%" stop-color="#ffffff"/>
+          <stop offset="35%" stop-color="#d7a8ff"/>
+          <stop offset="70%" stop-color="#9b5cff"/>
+          <stop offset="100%" stop-color="#642cff"/>
         </linearGradient>
 
-        <filter id="logoGlow">
+        <filter
+          id="xyloraGlow"
+          x="-100%"
+          y="-100%"
+          width="300%"
+          height="300%"
+        >
           <feGaussianBlur
             stdDeviation="3"
             result="blur"
@@ -46,67 +55,121 @@
 
       </defs>
 
-      <!-- Orbit -->
+
+      <!-- BIG ORBIT RING -->
+
       <ellipse
         cx="78"
-        cy="40"
-        rx="72"
-        ry="24"
+        cy="45"
+        rx="70"
+        ry="29"
         fill="none"
-        stroke="url(#logoGradient)"
-        stroke-width="2.5"
-        transform="rotate(-17 78 40)"
-        filter="url(#logoGlow)"
+        stroke="url(#xyloraPurple)"
+        stroke-width="4"
+        transform="rotate(-22 78 45)"
+        filter="url(#xyloraGlow)"
       />
+
+
+      <!-- ORBIT HIGHLIGHT -->
+
+      <ellipse
+        cx="78"
+        cy="45"
+        rx="70"
+        ry="29"
+        fill="none"
+        stroke="#e7c8ff"
+        stroke-width="1"
+        opacity=".8"
+        transform="rotate(-22 78 45)"
+      />
+
 
       <!-- X -->
+
       <text
         x="35"
-        y="58"
+        y="67"
         font-family="Georgia, serif"
-        font-size="68"
+        font-size="72"
         font-weight="bold"
         font-style="italic"
-        fill="url(#logoGradient)"
-        filter="url(#logoGlow)"
+        fill="url(#xyloraPurple)"
+        filter="url(#xyloraGlow)"
       >X</text>
 
-      <!-- ylora -->
-      <text
-        x="82"
-        y="56"
-        font-family="Georgia, serif"
-        font-size="39"
-        font-weight="bold"
-        fill="#eee6ff"
-      >ylora</text>
 
-      <!-- Star -->
+      <!-- STAR -->
+
       <path
-        d="M77 7 L81 18 L92 22 L81 26 L77 37 L73 26 L62 22 L73 18 Z"
-        fill="#d9b7ff"
-        filter="url(#logoGlow)"
+        d="
+          M78 7
+          L82 19
+          L94 23
+          L82 27
+          L78 40
+          L74 27
+          L62 23
+          L74 19
+          Z
+        "
+        fill="#e1baff"
+        filter="url(#xyloraGlow)"
       />
 
+
+      <!-- ylora -->
+
+      <text
+        x="94"
+        y="64"
+        font-family="Georgia, serif"
+        font-size="43"
+        font-weight="bold"
+        fill="#f2eaff"
+      >ylora</text>
+
     </svg>
+
   </div>
 
+
+  <!-- NAVIGATION -->
+
   <nav>
-    <a href="#home">Home</a>
-    <a href="#builder">Create</a>
-    <a href="#premium">Premium</a>
+
+    <a href="#home">
+      Home
+    </a>
+
+    <a href="#builder">
+      Create
+    </a>
+
+    <a href="#premium">
+      Premium
+    </a>
+
   </nav>
 
-  <button id="planButton">🆓 Free</button>
+
+  <button id="planButton">
+    🆓 Free
+  </button>
 
 </header>
 
 
 <main>
 
+
 <!-- HERO -->
 
-<section id="home" class="hero">
+<section
+  id="home"
+  class="hero"
+>
 
   <p class="eyebrow">
     BUILD YOUR PROFILE
@@ -149,9 +212,11 @@
   class="builder-wrap"
 >
 
-  <!-- LEFT PANEL -->
+
+  <!-- LEFT BUILDER PANEL -->
 
   <aside class="panel">
+
 
     <div class="builder-title">
 
@@ -496,6 +561,7 @@
 
   <section class="preview">
 
+
     <div class="preview-head">
 
       <span>
@@ -638,6 +704,7 @@
   <p>
     Everything in Free, plus deeper profile customization.
   </p>
+
 
   <div class="premium-grid">
 
