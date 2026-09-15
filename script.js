@@ -20,21 +20,16 @@ function updatePreview() {
     $("bio").value || "";
 
   $("status").textContent =
-    state.plan === "premium"
-      ? "Premium plan"
-      : "Free plan";
+    state.plan === "premium" ? "Premium plan" : "Free plan";
 
   $("planButton").textContent =
-    state.plan === "premium"
-      ? "💎 Premium"
-      : "🆓 Free";
+    state.plan === "premium" ? "💎 Premium" : "🆓 Free";
 
   const card = $("canvas").querySelector(".profile-card");
 
   if (state.bgImage && state.plan === "premium") {
     card.style.backgroundImage =
       `linear-gradient(120deg,rgba(12,10,25,.35),rgba(96,69,255,.25)),url("${state.bgImage}")`;
-
     card.style.backgroundSize = "cover";
     card.style.backgroundPosition = "center";
   } else {
@@ -50,25 +45,34 @@ function updatePreview() {
   card.style.fontFamily = $("fontSelect").value;
 
   $("previewLinks").innerHTML =
-    state.links
-      .map(x => `<span class="link-pill">${x}</span>`)
-      .join("");
+    state.links.map(x =>
+      `<span class="link-pill">${x.name}</span>`
+    ).join("");
 
   $("previewSections").innerHTML =
-    state.sections
-      .map(x => `<span class="section-pill">${x}</span>`)
-      .join("");
+    state.sections.map(x =>
+      `<span class="section-pill">${x}</span>`
+    ).join("");
 }
 
 
-$("displayName").addEventListener("input", updatePreview);
-$("username").addEventListener("input", updatePreview);
-$("bio").addEventListener("input", updatePreview);
-$("bgColor").addEventListener("input", updatePreview);
-$("bgColor2").addEventListener("input", updatePreview);
+/* TEXT + COLORS */
+
+[
+  "displayName",
+  "username",
+  "bio",
+  "bgColor",
+  "bgColor2"
+].forEach(id => {
+  $(id).addEventListener("input", updatePreview);
+});
+
 $("backgroundStyle").addEventListener("change", updatePreview);
 $("fontSelect").addEventListener("change", updatePreview);
 
+
+/* PLAN */
 
 $("planSelect").addEventListener("change", e => {
   state.plan = e.target.value;
@@ -81,6 +85,8 @@ $("planSelect").addEventListener("change", e => {
 });
 
 
+/* AVATAR */
+
 $("avatarInput").addEventListener("change", e => {
   const file = e.target.files[0];
 
@@ -90,26 +96,21 @@ $("avatarInput").addEventListener("change", e => {
     state.plan === "free" &&
     file.type === "image/gif"
   ) {
-    alert(
-      "Animated profile pictures are a Premium feature."
-    );
-
+    alert("Animated profile pictures are a Premium feature.");
     e.target.value = "";
     return;
   }
 
   state.avatarUrl = URL.createObjectURL(file);
-
   $("avatar").src = state.avatarUrl;
 });
 
 
+/* BACKGROUND IMAGE */
+
 $("bgImageInput").addEventListener("change", e => {
   if (state.plan !== "premium") {
-    alert(
-      "Background pictures are a Premium feature."
-    );
-
+    alert("Background pictures are a Premium feature.");
     e.target.value = "";
     return;
   }
@@ -123,6 +124,8 @@ $("bgImageInput").addEventListener("change", e => {
   updatePreview();
 });
 
+
+/* AUDIO */
 
 $("audioInput").addEventListener("change", e => {
   const file = e.target.files[0];
@@ -140,50 +143,134 @@ $("audioInput").addEventListener("change", e => {
 });
 
 
-document.querySelectorAll("[data-link]")
-  .forEach(btn => {
+/* LINKS */
 
-    btn.addEventListener("click", () => {
+document.querySelectorAll("[data-link]").forEach(button => {
+  button.addEventListener("click", () => {
 
-      const name = btn.dataset.link;
+    const name = button.dataset.link;
 
-      const url = prompt(
-        `Enter your ${name} link:`
+    const url = prompt(
+      `Enter your ${name} link:`
+    );
+
+    if (!url) return;
+
+    state.links.push({
+      name: name,
+      url: url
+    });
+
+    updatePreview();
+  });
+});
+
+
+/* SECTIONS */
+
+document.querySelectorAll("[data-section]").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    const section = button.dataset.section;
+
+    if (!state.sections.includes(section)) {
+      state.sections.push(section);
+    }
+
+    updatePreview();
+  });
+
+});
+
+
+/* ================================================= */
+/* INDIVIDUAL DRAGGING */
+/* ================================================= */
+
+document.querySelectorAll(".draggable").forEach(element => {
+
+  let dragging = false;
+  let offsetX = 0;
+  let offsetY = 0;
+
+  element.addEventListener("pointerdown", event => {
+
+    if (
+      event.target.closest(
+        "audio,button,a,input,textarea,select"
+      )
+    ) {
+      return;
+    }
+
+    dragging = true;
+
+    const elementRect =
+      element.getBoundingClientRect();
+
+    offsetX =
+      event.clientX - elementRect.left;
+
+    offsetY =
+      event.clientY - elementRect.top;
+
+    element.setPointerCapture(
+      event.pointerId
+    );
+  });
+
+
+  element.addEventListener("pointermove", event => {
+
+    if (!dragging) return;
+
+    const canvas =
+      document.getElementById("canvas");
+
+    const canvasRect =
+      canvas.getBoundingClientRect();
+
+    const x =
+      event.clientX -
+      canvasRect.left -
+      offsetX;
+
+    const y =
+      event.clientY -
+      canvasRect.top -
+      offsetY;
+
+    element.style.left =
+      Math.max(0, x) + "px";
+
+    element.style.top =
+      Math.max(0, y) + "px";
+  });
+
+
+  element.addEventListener("pointerup", event => {
+
+    dragging = false;
+
+    try {
+      element.releasePointerCapture(
+        event.pointerId
       );
-
-      if (url) {
-        state.links.push(name);
-        updatePreview();
-      }
-
-    });
-
+    } catch {}
   });
 
 
-document.querySelectorAll("[data-section]")
-  .forEach(btn => {
-
-    btn.addEventListener("click", () => {
-
-      if (
-        !state.sections.includes(
-          btn.dataset.section
-        )
-      ) {
-        state.sections.push(
-          btn.dataset.section
-        );
-      }
-
-      updatePreview();
-    });
-
+  element.addEventListener("pointercancel", () => {
+    dragging = false;
   });
 
+});
+
+
+/* RESET */
 
 const defaults = {
-
   avatar: {
     left: "7%",
     top: "7%",
@@ -194,202 +281,97 @@ const defaults = {
   identity: {
     left: "7%",
     top: "29%",
-    width: "70%",
-    height: "auto"
+    width: "70%"
   },
 
   audio: {
     left: "7%",
     top: "51%",
-    width: "440px",
-    height: "auto"
+    width: "440px"
   },
 
   links: {
     left: "7%",
     top: "67%",
-    width: "75%",
-    height: "auto"
+    width: "75%"
   },
 
   sections: {
     left: "7%",
     top: "78%",
-    width: "80%",
-    height: "auto"
+    width: "80%"
   }
-
 };
 
 
-document.querySelectorAll(".draggable").forEach(el => {
-  let dragging = false;
-  let offsetX = 0;
-  let offsetY = 0;
+$("resetLayout").addEventListener("click", () => {
 
-  el.addEventListener("pointerdown", e => {
-    if (e.target.closest("audio,button,a,input,textarea,select")) return;
+  document.querySelectorAll(".draggable")
+    .forEach(element => {
 
-    dragging = true;
-    const r = el.getBoundingClientRect();
+      const settings =
+        defaults[element.dataset.key];
 
-    offsetX = e.clientX - r.left;
-    offsetY = e.clientY - r.top;
+      if (!settings) return;
 
-    el.setPointerCapture(e.pointerId);
-  });
+      element.style.left =
+        settings.left;
 
-  el.addEventListener("pointermove", e => {
-    if (!dragging) return;
+      element.style.top =
+        settings.top;
 
-    const canvas = document.getElementById("canvas");
-    const r = canvas.getBoundingClientRect();
+      element.style.width =
+        settings.width;
 
-    el.style.left = `${e.clientX - r.left - offsetX}px`;
-    el.style.top = `${e.clientY - r.top - offsetY}px`;
-  });
+      if (settings.height) {
+        element.style.height =
+          settings.height;
+      }
+    });
 
-  el.addEventListener("pointerup", () => {
-    dragging = false;
-  });
 });
 
-      if (
-        e.target.closest(
-          "audio,button,a,input,textarea,select"
-        )
-      ) {
-        return;
-      }
 
-      drag = true;
+/* SAVE */
 
-      el.setPointerCapture(
-        e.pointerId
-      );
+$("saveProfile").addEventListener("click", () => {
 
-      const r =
-        el.getBoundingClientRect();
+  const data = {
 
-      ox = e.clientX - r.left;
-      oy = e.clientY - r.top;
+    displayName:
+      $("displayName").value,
 
-    });
+    username:
+      $("username").value,
 
+    bio:
+      $("bio").value,
 
-    el.addEventListener("pointermove", e => {
+    plan:
+      state.plan,
 
-      if (!drag) return;
+    links:
+      state.links,
 
-      const cr =
-        $("canvas").getBoundingClientRect();
+    sections:
+      state.sections
+  };
 
-      let x =
-        e.clientX - cr.left - ox;
+  localStorage.setItem(
+    "xyloraProfile",
+    JSON.stringify(data)
+  );
 
-      let y =
-        e.clientY - cr.top - oy;
+  $("status").textContent =
+    "Saved ✓";
 
-      x = Math.max(
-        0,
-        Math.min(
-          x,
-          cr.width - el.offsetWidth
-        )
-      );
-
-      y = Math.max(
-        0,
-        Math.min(
-          y,
-          cr.height - el.offsetHeight
-        )
-      );
-
-      el.style.left = x + "px";
-      el.style.top = y + "px";
-
-    });
+  setTimeout(
+    updatePreview,
+    1500
+  );
+});
 
 
-    el.addEventListener(
-      "pointerup",
-      () => drag = false
-    );
-
-  });
-
-
-$("resetLayout").addEventListener(
-  "click",
-  () => {
-
-    document
-      .querySelectorAll(".draggable")
-      .forEach(el => {
-
-        const d =
-          defaults[el.dataset.key];
-
-        if (!d) return;
-
-        el.style.left = d.left;
-        el.style.top = d.top;
-        el.style.width = d.width;
-
-        if (d.height !== "auto") {
-          el.style.height = d.height;
-        } else {
-          el.style.height = "";
-        }
-
-      });
-
-  }
-);
-
-
-$("saveProfile").addEventListener(
-  "click",
-  () => {
-
-    const data = {
-
-      displayName:
-        $("displayName").value,
-
-      username:
-        $("username").value,
-
-      bio:
-        $("bio").value,
-
-      plan:
-        state.plan,
-
-      links:
-        state.links,
-
-      sections:
-        state.sections
-
-    };
-
-    localStorage.setItem(
-      "xyloraProfile",
-      JSON.stringify(data)
-    );
-
-    $("status").textContent =
-      "Saved ✓";
-
-    setTimeout(
-      updatePreview,
-      1500
-    );
-
-  }
-);
-
+/* START */
 
 updatePreview();
