@@ -577,3 +577,31 @@ small,
     grid-template-columns:1fr
   }
 }
+/* Xylora logo */
+
+.logo{
+  width:260px;
+  height:80px;
+  display:flex;
+  align-items:center;
+  flex-shrink:0;
+}
+
+.xylora-logo{
+  width:230px;
+  height:72px;
+  display:block;
+  overflow:visible;
+}
+
+@media(max-width:600px){
+  .logo{
+    width:190px;
+    height:65px;
+  }
+
+  .xylora-logo{
+    width:180px;
+    height:60px;
+  }
+}
