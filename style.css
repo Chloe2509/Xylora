@@ -314,7 +314,7 @@ small,
 
 .resizable{
   resize:both;
-  overflow:auto
+  overflow:hidden;
 }
 
 .avatar-box{
