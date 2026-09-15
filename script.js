@@ -9,7 +9,11 @@ const state = {
   bgImage: ""
 };
 
-function updatePreview() {
+
+/* UPDATE PREVIEW */
+
+function updatePreview(){
+
   $("previewName").textContent =
     $("displayName").value || "Your Name";
 
@@ -20,356 +24,552 @@ function updatePreview() {
     $("bio").value || "";
 
   $("status").textContent =
-    state.plan === "premium" ? "Premium plan" : "Free plan";
+    state.plan === "premium"
+      ? "Premium plan"
+      : "Free plan";
 
   $("planButton").textContent =
-    state.plan === "premium" ? "💎 Premium" : "🆓 Free";
+    state.plan === "premium"
+      ? "💎 Premium"
+      : "🆓 Free";
 
-  const card = $("canvas").querySelector(".profile-card");
 
-  if (state.bgImage && state.plan === "premium") {
+  const card =
+    $("canvas").querySelector(".profile-card");
+
+
+  if(state.bgImage && state.plan === "premium"){
+
     card.style.backgroundImage =
       `linear-gradient(120deg,rgba(12,10,25,.35),rgba(96,69,255,.25)),url("${state.bgImage}")`;
+
     card.style.backgroundSize = "cover";
     card.style.backgroundPosition = "center";
-  } else {
+
+  }else{
+
     const a = $("bgColor").value;
     const b = $("bgColor2").value;
 
-    card.style.backgroundImage =
-      $("backgroundStyle").value === "solid"
-        ? `linear-gradient(${a},${a})`
-        : `linear-gradient(120deg,${a},${b})`;
+    if($("backgroundStyle").value === "solid"){
+
+      card.style.backgroundImage =
+        `linear-gradient(${a},${a})`;
+
+    }else{
+
+      card.style.backgroundImage =
+        `linear-gradient(120deg,${a},${b})`;
+
+    }
+
   }
 
-  card.style.fontFamily = $("fontSelect").value;
+
+  card.style.fontFamily =
+    $("fontSelect").value;
+
 
   $("previewLinks").innerHTML =
-    state.links.map(x =>
-      `<span class="link-pill">${x.name}</span>`
+    state.links.map(link =>
+      `<span class="link-pill">${link.name}</span>`
     ).join("");
 
+
   $("previewSections").innerHTML =
-    state.sections.map(x =>
-      `<span class="section-pill">${x}</span>`
+    state.sections.map(section =>
+      `<span class="section-pill">${section}</span>`
     ).join("");
 }
 
 
-/* TEXT + COLORS */
+/* TEXT */
 
-[
-  "displayName",
-  "username",
-  "bio",
-  "bgColor",
-  "bgColor2"
-].forEach(id => {
-  $(id).addEventListener("input", updatePreview);
-});
+$("displayName").addEventListener(
+  "input",
+  updatePreview
+);
 
-$("backgroundStyle").addEventListener("change", updatePreview);
-$("fontSelect").addEventListener("change", updatePreview);
+$("username").addEventListener(
+  "input",
+  updatePreview
+);
+
+$("bio").addEventListener(
+  "input",
+  updatePreview
+);
+
+$("bgColor").addEventListener(
+  "input",
+  updatePreview
+);
+
+$("bgColor2").addEventListener(
+  "input",
+  updatePreview
+);
+
+$("backgroundStyle").addEventListener(
+  "change",
+  updatePreview
+);
+
+$("fontSelect").addEventListener(
+  "change",
+  updatePreview
+);
 
 
 /* PLAN */
 
-$("planSelect").addEventListener("change", e => {
-  state.plan = e.target.value;
+$("planSelect").addEventListener(
+  "change",
+  event => {
 
-  if (state.plan === "free") {
-    state.bgImage = "";
+    state.plan = event.target.value;
+
+    if(state.plan === "free"){
+      state.bgImage = "";
+    }
+
+    updatePreview();
+
   }
-
-  updatePreview();
-});
+);
 
 
-/* AVATAR */
+/* PROFILE PICTURE */
 
-$("avatarInput").addEventListener("change", e => {
-  const file = e.target.files[0];
+$("avatarInput").addEventListener(
+  "change",
+  event => {
 
-  if (!file) return;
+    const file =
+      event.target.files[0];
 
-  if (
-    state.plan === "free" &&
-    file.type === "image/gif"
-  ) {
-    alert("Animated profile pictures are a Premium feature.");
-    e.target.value = "";
-    return;
+    if(!file) return;
+
+
+    if(
+      state.plan === "free" &&
+      (
+        file.type === "image/gif" ||
+        file.type === "image/webp"
+      )
+    ){
+
+      alert(
+        "Animated profile pictures are a Premium feature."
+      );
+
+      event.target.value = "";
+      return;
+    }
+
+
+    if(state.avatarUrl){
+      URL.revokeObjectURL(
+        state.avatarUrl
+      );
+    }
+
+
+    state.avatarUrl =
+      URL.createObjectURL(file);
+
+
+    $("avatar").src =
+      state.avatarUrl;
+
+    $("avatar").style.display =
+      "block";
+
+    document.querySelector(
+      ".avatar-placeholder"
+    ).style.display = "none";
+
   }
-
-  state.avatarUrl = URL.createObjectURL(file);
-  $("avatar").src = state.avatarUrl;
-});
+);
 
 
-/* BACKGROUND IMAGE */
+/* BACKGROUND */
 
-$("bgImageInput").addEventListener("change", e => {
-  if (state.plan !== "premium") {
-    alert("Background pictures are a Premium feature.");
-    e.target.value = "";
-    return;
+$("bgImageInput").addEventListener(
+  "change",
+  event => {
+
+    if(state.plan !== "premium"){
+
+      alert(
+        "Background pictures are a Premium feature."
+      );
+
+      event.target.value = "";
+      return;
+    }
+
+
+    const file =
+      event.target.files[0];
+
+    if(!file) return;
+
+
+    state.bgImage =
+      URL.createObjectURL(file);
+
+    updatePreview();
+
   }
-
-  const file = e.target.files[0];
-
-  if (!file) return;
-
-  state.bgImage = URL.createObjectURL(file);
-
-  updatePreview();
-});
+);
 
 
 /* AUDIO */
 
-$("audioInput").addEventListener("change", e => {
-  const file = e.target.files[0];
+$("audioInput").addEventListener(
+  "change",
+  event => {
 
-  if (!file) return;
+    const file =
+      event.target.files[0];
 
-  if (state.audioUrl) {
-    URL.revokeObjectURL(state.audioUrl);
+    if(!file) return;
+
+
+    if(state.audioUrl){
+      URL.revokeObjectURL(
+        state.audioUrl
+      );
+    }
+
+
+    state.audioUrl =
+      URL.createObjectURL(file);
+
+
+    $("audioPlayer").src =
+      state.audioUrl;
+
+    $("audioName").textContent =
+      file.name;
+
   }
-
-  state.audioUrl = URL.createObjectURL(file);
-
-  $("audioPlayer").src = state.audioUrl;
-  $("audioName").textContent = file.name;
-});
+);
 
 
 /* LINKS */
 
-document.querySelectorAll("[data-link]").forEach(button => {
-  button.addEventListener("click", () => {
+document
+  .querySelectorAll("[data-link]")
+  .forEach(button => {
 
-    const name = button.dataset.link;
+    button.addEventListener(
+      "click",
+      () => {
 
-    const url = prompt(
-      `Enter your ${name} link:`
+        const name =
+          button.dataset.link;
+
+        const url =
+          prompt(
+            `Enter your ${name} link:`
+          );
+
+        if(!url) return;
+
+
+        state.links.push({
+          name:name,
+          url:url
+        });
+
+
+        updatePreview();
+
+      }
     );
 
-    if (!url) return;
-
-    state.links.push({
-      name: name,
-      url: url
-    });
-
-    updatePreview();
   });
-});
 
 
 /* SECTIONS */
 
-document.querySelectorAll("[data-section]").forEach(button => {
+document
+  .querySelectorAll("[data-section]")
+  .forEach(button => {
 
-  button.addEventListener("click", () => {
+    button.addEventListener(
+      "click",
+      () => {
 
-    const section = button.dataset.section;
+        const section =
+          button.dataset.section;
 
-    if (!state.sections.includes(section)) {
-      state.sections.push(section);
-    }
+        if(
+          !state.sections.includes(section)
+        ){
 
-    updatePreview();
+          state.sections.push(section);
+
+        }
+
+        updatePreview();
+
+      }
+    );
+
   });
-
-});
 
 
 /* ================================================= */
 /* INDIVIDUAL DRAGGING */
 /* ================================================= */
 
-document.querySelectorAll(".draggable").forEach(element => {
+document
+  .querySelectorAll(".draggable")
+  .forEach(element => {
 
-  let dragging = false;
-  let offsetX = 0;
-  let offsetY = 0;
+    let dragging = false;
+    let offsetX = 0;
+    let offsetY = 0;
 
-  element.addEventListener("pointerdown", event => {
 
-    if (
-      event.target.closest(
-        "audio,button,a,input,textarea,select"
-      )
-    ) {
-      return;
-    }
+    element.addEventListener(
+      "pointerdown",
+      event => {
 
-    dragging = true;
+        if(
+          event.target.closest(
+            "audio,button,a,input,textarea,select"
+          )
+        ){
+          return;
+        }
 
-    const elementRect =
-      element.getBoundingClientRect();
 
-    offsetX =
-      event.clientX - elementRect.left;
+        dragging = true;
 
-    offsetY =
-      event.clientY - elementRect.top;
 
-    element.setPointerCapture(
-      event.pointerId
+        const rect =
+          element.getBoundingClientRect();
+
+
+        offsetX =
+          event.clientX - rect.left;
+
+        offsetY =
+          event.clientY - rect.top;
+
+
+        element.setPointerCapture(
+          event.pointerId
+        );
+
+      }
     );
+
+
+    element.addEventListener(
+      "pointermove",
+      event => {
+
+        if(!dragging) return;
+
+
+        const canvas =
+          $("canvas");
+
+        const canvasRect =
+          canvas.getBoundingClientRect();
+
+
+        let x =
+          event.clientX -
+          canvasRect.left -
+          offsetX;
+
+
+        let y =
+          event.clientY -
+          canvasRect.top -
+          offsetY;
+
+
+        x = Math.max(
+          0,
+          Math.min(
+            x,
+            canvasRect.width -
+            element.offsetWidth
+          )
+        );
+
+
+        y = Math.max(
+          0,
+          Math.min(
+            y,
+            canvasRect.height -
+            element.offsetHeight
+          )
+        );
+
+
+        element.style.left =
+          x + "px";
+
+        element.style.top =
+          y + "px";
+
+      }
+    );
+
+
+    element.addEventListener(
+      "pointerup",
+      event => {
+
+        dragging = false;
+
+        try{
+
+          element.releasePointerCapture(
+            event.pointerId
+          );
+
+        }catch(error){}
+
+      }
+    );
+
+
+    element.addEventListener(
+      "pointercancel",
+      () => {
+
+        dragging = false;
+
+      }
+    );
+
   });
-
-
-  element.addEventListener("pointermove", event => {
-
-    if (!dragging) return;
-
-    const canvas =
-      document.getElementById("canvas");
-
-    const canvasRect =
-      canvas.getBoundingClientRect();
-
-    const x =
-      event.clientX -
-      canvasRect.left -
-      offsetX;
-
-    const y =
-      event.clientY -
-      canvasRect.top -
-      offsetY;
-
-    element.style.left =
-      Math.max(0, x) + "px";
-
-    element.style.top =
-      Math.max(0, y) + "px";
-  });
-
-
-  element.addEventListener("pointerup", event => {
-
-    dragging = false;
-
-    try {
-      element.releasePointerCapture(
-        event.pointerId
-      );
-    } catch {}
-  });
-
-
-  element.addEventListener("pointercancel", () => {
-    dragging = false;
-  });
-
-});
 
 
 /* RESET */
 
 const defaults = {
-  avatar: {
-    left: "7%",
-    top: "7%",
-    width: "124px",
-    height: "124px"
+
+  avatar:{
+    left:"7%",
+    top:"7%"
   },
 
-  identity: {
-    left: "7%",
-    top: "29%",
-    width: "70%"
+  name:{
+    left:"7%",
+    top:"29%"
   },
 
-  audio: {
-    left: "7%",
-    top: "51%",
-    width: "440px"
+  username:{
+    left:"7%",
+    top:"37%"
   },
 
-  links: {
-    left: "7%",
-    top: "67%",
-    width: "75%"
+  bio:{
+    left:"7%",
+    top:"42%"
   },
 
-  sections: {
-    left: "7%",
-    top: "78%",
-    width: "80%"
+  audio:{
+    left:"7%",
+    top:"51%"
+  },
+
+  links:{
+    left:"7%",
+    top:"67%"
+  },
+
+  sections:{
+    left:"7%",
+    top:"78%"
   }
+
 };
 
 
-$("resetLayout").addEventListener("click", () => {
+$("resetLayout").addEventListener(
+  "click",
+  () => {
 
-  document.querySelectorAll(".draggable")
-    .forEach(element => {
+    document
+      .querySelectorAll(".draggable")
+      .forEach(element => {
 
-      const settings =
-        defaults[element.dataset.key];
+        const position =
+          defaults[element.dataset.key];
 
-      if (!settings) return;
+        if(!position) return;
 
-      element.style.left =
-        settings.left;
 
-      element.style.top =
-        settings.top;
+        element.style.left =
+          position.left;
 
-      element.style.width =
-        settings.width;
+        element.style.top =
+          position.top;
 
-      if (settings.height) {
-        element.style.height =
-          settings.height;
-      }
-    });
+      });
 
-});
+  }
+);
 
 
 /* SAVE */
 
-$("saveProfile").addEventListener("click", () => {
+$("saveProfile").addEventListener(
+  "click",
+  () => {
 
-  const data = {
+    const data = {
 
-    displayName:
-      $("displayName").value,
+      displayName:
+        $("displayName").value,
 
-    username:
-      $("username").value,
+      username:
+        $("username").value,
 
-    bio:
-      $("bio").value,
+      bio:
+        $("bio").value,
 
-    plan:
-      state.plan,
+      plan:
+        state.plan,
 
-    links:
-      state.links,
+      links:
+        state.links,
 
-    sections:
-      state.sections
-  };
+      sections:
+        state.sections
 
-  localStorage.setItem(
-    "xyloraProfile",
-    JSON.stringify(data)
-  );
+    };
 
-  $("status").textContent =
-    "Saved ✓";
 
-  setTimeout(
-    updatePreview,
-    1500
-  );
-});
+    localStorage.setItem(
+      "xyloraProfile",
+      JSON.stringify(data)
+    );
+
+
+    $("status").textContent =
+      "Saved ✓";
+
+
+    setTimeout(
+      updatePreview,
+      1500
+    );
+
+  }
+);
 
 
 /* START */
