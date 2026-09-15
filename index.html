@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Xylora — Profile Builder</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar"><div class="logo">✦ Xylora</div>
+<nav><a href="#home">Home</a><a href="#builder">Create</a><a href="#premium">Premium</a></nav>
+<button id="planButton">🆓 Free</button></header>
+
+<main>
+<section id="home" class="hero"><p class="eyebrow">BUILD YOUR PROFILE</p>
+<h1>Create a profile that's uniquely you.</h1>
+<p>Customize your profile, add links and audio, and move everything exactly where you want it.</p>
+<a class="primary" href="#builder">Start building ✦</a>
+<a class="secondary" href="#premium">💎 Premium — $10/month</a></section>
+
+<section id="builder" class="builder-wrap">
+<div class="panel"><div class="title"><div><p class="eyebrow">PROFILE BUILDER</p><h2>Make it yours.</h2></div>
+<select id="planSelect"><option value="free">Free</option><option value="premium">Premium</option></select></div>
+
+<div class="grid">
+<label>Display name<input id="displayName" value="Your Name"></label>
+<label>Username<input id="username" value="@username"></label>
+<label class="wide">Bio<textarea id="bio">Tell people a little about yourself...</textarea></label>
+
+<label>Profile picture<input id="avatarInput" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
+<small>Free: still pictures. Premium: animated GIF/WebP.</small></label>
+
+<label>Background color<input id="bgColor" type="color" value="#171126"><small>Everyone can change the color.</small></label>
+
+<label class="premium-only">Background picture<input id="bgImageInput" type="file" accept="image/*">
+<small>Premium only.</small></label>
+
+<label>Font<select id="fontSelect"><option>Inter</option><option>Georgia</option><option>Trebuchet MS</option><option>Arial</option></select></label>
+
+<div class="wide audio-section">
+<h3>🎵 Audio</h3>
+<p>Add a song or audio file to your profile. <strong>Everyone can use audio.</strong></p>
+<label class="audio-upload">Choose audio<input id="audioInput" type="file" accept="audio/*"></label>
+<small>Your audio player will appear on your profile and can be moved anywhere.</small>
+</div>
+
+<div class="wide"><h3>Add links</h3><div class="buttons">
+<button data-link="Instagram">Instagram</button><button data-link="Pinterest">Pinterest</button>
+<button data-link="TikTok">TikTok</button><button data-link="Spotify">Spotify</button>
+<button data-link="YouTube">YouTube</button><button data-link="Discord">Discord</button>
+<button data-link="GitHub">GitHub</button><button data-link="Custom">Custom</button></div></div>
+
+<div class="wide"><h3>Profile sections</h3><div class="buttons">
+<button data-section="🎵 Music">Music</button><button data-section="💼 Work">Work</button>
+<button data-section="👥 Communities">Communities</button><button data-section="📁 Files">Files</button></div></div>
+
+<div class="wide note"><h3>Layout</h3><p>Drag every profile piece anywhere. Everyone gets positioning and resizing.</p>
+<button id="resetLayout">Reset layout</button><button id="saveProfile" class="primary">Save profile</button></div>
+</div></div>
+
+<div class="preview"><div class="preview-head"><span>Live preview</span><span id="status">Free plan</span></div>
+<div id="canvas"><div class="profile-card">
+<div class="draggable resizable avatar-box" data-key="avatar"><img id="avatar" src="https://placehold.co/180x180/241b3d/ffffff?text=PFP" alt="Profile picture"></div>
+<div class="draggable" data-key="name"><h2 id="previewName">Your Name</h2><p id="previewUsername">@username</p></div>
+<div class="draggable resizable" data-key="bio"><p id="previewBio">Tell people a little about yourself...</p></div>
+<div class="draggable" data-key="audio"><audio id="audioPlayer" controls hidden></audio><p id="audioEmpty">Add audio from the builder.</p></div>
+<div class="draggable" data-key="links"><div id="previewLinks"></div></div>
+<div class="draggable" data-key="sections"><div id="previewSections"></div></div>
+</div></div></div>
+</section>
+
+<section id="premium" class="premium"><p class="eyebrow">💎 XYLORA PREMIUM</p><h2>$10/month</h2>
+<p>Everything in Free, plus live/animated profile pictures, picture backgrounds, and advanced customization.</p>
+<div class="premium-grid"><span>🎞️ Live & animated PFPs</span><span>🖼️ Picture backgrounds</span>
+<span>✨ Advanced effects</span><span>🔤 More fonts</span><span>🎨 More styling</span><span>🎵 Advanced audio player</span>
+<span>🎨 Premium themes</span><span>🏷️ Premium badge</span></div></section>
+</main>
+<script src="script.js"></script></body></html>
