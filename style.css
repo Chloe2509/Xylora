@@ -10,9 +10,7 @@
   --purple2:#6045ff
 }
 
-html{
-  scroll-behavior:smooth
-}
+html{scroll-behavior:smooth}
 
 body{
   margin:0;
@@ -56,12 +54,64 @@ button:hover{
   z-index:20
 }
 
+/* NEW XYLORA LOGO */
+
 .logo{
-  font:700 30px Georgia,serif
+  position:relative;
+  display:flex;
+  align-items:center;
+  width:190px;
+  height:60px;
+  color:#eee6ff;
+  font-family:Georgia,serif;
+  font-size:42px;
+  font-weight:700;
+  letter-spacing:-2px;
+  text-shadow:
+    0 0 10px rgba(180,130,255,.7),
+    0 0 25px rgba(130,70,255,.45)
 }
 
-.logo:first-letter{
-  color:#a78bff
+.logo-x{
+  position:relative;
+  display:inline-block;
+  color:#b98cff;
+  font-size:58px;
+  font-weight:700;
+  font-style:italic;
+  margin-right:1px;
+  text-shadow:
+    0 0 10px rgba(190,130,255,.9),
+    0 0 30px rgba(120,60,255,.65)
+}
+
+.logo-x::after{
+  content:"";
+  position:absolute;
+  width:155px;
+  height:45px;
+  left:-48px;
+  top:7px;
+  border:2px solid #a56cff;
+  border-radius:50%;
+  transform:rotate(-18deg);
+  opacity:.9;
+  box-shadow:
+    0 0 8px rgba(165,108,255,.8),
+    0 0 18px rgba(120,60,255,.45);
+  pointer-events:none
+}
+
+.logo-orbit{
+  position:absolute;
+  left:8px;
+  top:-1px;
+  color:#d5b4ff;
+  font-size:20px;
+  z-index:3;
+  text-shadow:
+    0 0 8px #b77cff,
+    0 0 18px #7b42ff
 }
 
 .topbar nav{
@@ -217,10 +267,6 @@ small,
   padding:3px
 }
 
-.premium-only{
-  display:block
-}
-
 .builder-section{
   border-top:1px solid #2b2740;
   padding-top:20px;
@@ -310,28 +356,20 @@ small,
   box-shadow:inset 0 0 80px rgba(255,255,255,.03)
 }
 
-/* Draggable pieces */
 .draggable{
   position:absolute;
   user-select:none;
   cursor:move
 }
 
-/* Resize without showing scrollbars */
-.resizable{
-  resize:both;
-  overflow:hidden
-}
-
-/* Profile picture */
 .avatar-box{
   left:7%;
   top:7%;
   width:124px;
   height:124px;
-  overflow:hidden !important;
-  resize:none !important;
-  border-radius:50%;
+  overflow:hidden!important;
+  resize:none!important;
+  border-radius:50%
 }
 
 .avatar-box img{
@@ -343,7 +381,6 @@ small,
   border:3px solid rgba(220,212,255,.55)
 }
 
-/* Identity */
 .identity{
   left:7%;
   top:29%;
@@ -365,7 +402,6 @@ small,
   font:18px Georgia,serif
 }
 
-/* Audio */
 .audio-player-box{
   left:7%;
   top:51%;
@@ -407,7 +443,6 @@ small,
   height:38px
 }
 
-/* Links */
 .links-box{
   left:7%;
   top:67%;
@@ -425,7 +460,6 @@ small,
   font-size:13px
 }
 
-/* Sections */
 .sections-box{
   left:7%;
   top:78%;
@@ -443,7 +477,6 @@ small,
   font-size:13px
 }
 
-/* Premium */
 .premium{
   width:min(1050px,94%);
   margin:0 auto 100px;
@@ -481,7 +514,6 @@ small,
   background:#0d0c16
 }
 
-/* Tablet */
 @media(max-width:900px){
 
   .builder-wrap{
@@ -497,12 +529,16 @@ small,
   }
 }
 
-/* Phone */
 @media(max-width:600px){
 
   .topbar{
     padding:0 18px;
     height:72px
+  }
+
+  .logo{
+    transform:scale(.82);
+    transform-origin:left center
   }
 
   .topbar nav{
