@@ -329,8 +329,9 @@ small,
   top:7%;
   width:124px;
   height:124px;
-  overflow:hidden;
-  border-radius:50%
+  overflow:hidden !important;
+  resize:none !important;
+  border-radius:50%;
 }
 
 .avatar-box img{
