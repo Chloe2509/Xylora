@@ -605,3 +605,34 @@ small,
     height:60px;
   }
 }
+/* XYLORA SVG LOGO */
+
+.logo{
+  width:300px;
+  height:90px;
+  display:flex;
+  align-items:center;
+  flex-shrink:0;
+  overflow:visible;
+}
+
+.xylora-logo{
+  width:290px;
+  height:88px;
+  display:block;
+  overflow:visible;
+}
+
+@media(max-width:600px){
+
+  .logo{
+    width:205px;
+    height:70px;
+  }
+
+  .xylora-logo{
+    width:200px;
+    height:68px;
+  }
+
+}
