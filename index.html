@@ -1,7 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Xylora</title>
+
+  <link rel="icon" type="image/png" href="square_high_resolution_stylized_neon_sci_fi_logo.png">
+
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -94,7 +100,10 @@
 <section id="home" class="hero">
 
   <div class="hero-content">
-    <div class="eyebrow">BUILD YOUR PROFILE</div>
+
+    <div class="eyebrow">
+      BUILD YOUR PROFILE
+    </div>
 
     <h1>
       Create a profile that's<br>
@@ -107,9 +116,17 @@
     </p>
 
     <div class="hero-buttons">
-      <a href="#builder" class="primary-btn">Start building ✦</a>
-      <a href="#premium" class="secondary-btn">💎 Premium — $10/month</a>
+
+      <a href="#builder" class="primary-btn">
+        Start building ✦
+      </a>
+
+      <a href="#premium" class="secondary-btn">
+        💎 Premium — $10/month
+      </a>
+
     </div>
+
   </div>
 
 </section>
@@ -132,9 +149,13 @@
 
     <label>Profile picture</label>
     <input id="avatarInput" type="file" accept="image/*">
-    <small>Free: still pictures. Premium: animated GIF/WebP.</small>
+
+    <small>
+      Free: still pictures. Premium: animated GIF/WebP.
+    </small>
 
     <label>Plan</label>
+
     <select id="planSelect">
       <option value="free">Free</option>
       <option value="premium">Premium</option>
@@ -153,9 +174,15 @@
     </select>
 
     <label>Premium background</label>
-    <input id="bgImageInput" type="file" accept="image/*">
+
+    <input
+      id="bgImageInput"
+      type="file"
+      accept="image/*"
+    >
 
     <label>Font</label>
+
     <select id="fontSelect">
       <option value="Georgia, serif">Elegant Serif</option>
       <option value="Arial, sans-serif">Modern</option>
@@ -166,39 +193,90 @@
 
     <h3>🎵 Audio</h3>
 
-    <input id="audioInput" type="file" accept="audio/*">
+    <input
+      id="audioInput"
+      type="file"
+      accept="audio/*"
+    >
 
 
     <h3>Links</h3>
 
     <div class="button-grid">
-      <button data-link="Instagram">Instagram</button>
-      <button data-link="Pinterest">Pinterest</button>
-      <button data-link="TikTok">TikTok</button>
-      <button data-link="Spotify">Spotify</button>
-      <button data-link="YouTube">YouTube</button>
-      <button data-link="Discord">Discord</button>
-      <button data-link="GitHub">GitHub</button>
-      <button data-link="Custom">Custom</button>
+
+      <button data-link="Instagram">
+        Instagram
+      </button>
+
+      <button data-link="Pinterest">
+        Pinterest
+      </button>
+
+      <button data-link="TikTok">
+        TikTok
+      </button>
+
+      <button data-link="Spotify">
+        Spotify
+      </button>
+
+      <button data-link="YouTube">
+        YouTube
+      </button>
+
+      <button data-link="Discord">
+        Discord
+      </button>
+
+      <button data-link="GitHub">
+        GitHub
+      </button>
+
+      <button data-link="Custom">
+        Custom
+      </button>
+
     </div>
 
 
     <h3>Sections</h3>
 
     <div class="button-grid">
-      <button data-section="Music">Music</button>
-      <button data-section="Work">Work</button>
-      <button data-section="Communities">Communities</button>
-      <button data-section="Files">Files</button>
+
+      <button data-section="Music">
+        Music
+      </button>
+
+      <button data-section="Work">
+        Work
+      </button>
+
+      <button data-section="Communities">
+        Communities
+      </button>
+
+      <button data-section="Files">
+        Files
+      </button>
+
     </div>
 
 
     <div class="layout-buttons">
-      <button id="resetLayout">Reset Layout</button>
-      <button id="saveProfile">Save Profile</button>
+
+      <button id="resetLayout">
+        Reset Layout
+      </button>
+
+      <button id="saveProfile">
+        Save Profile
+      </button>
+
     </div>
 
-    <p id="status">Free plan</p>
+    <p id="status">
+      Free plan
+    </p>
 
   </div>
 
@@ -206,21 +284,25 @@
   <div class="preview-area">
 
     <div class="preview-title">
-      <span>Live preview</span>
+      Live preview
     </div>
 
     <div id="canvas">
 
       <div class="profile-card">
 
-        <!-- EACH ITEM IS SEPARATE -->
 
         <div
           class="draggable avatar-box"
           data-key="avatar"
         >
+
           <img id="avatar" alt="">
-          <span class="avatar-placeholder">Profile Picture</span>
+
+          <span class="avatar-placeholder">
+            Profile Picture
+          </span>
+
         </div>
 
 
@@ -228,7 +310,11 @@
           class="draggable name-box"
           data-key="name"
         >
-          <h2 id="previewName">Your Name</h2>
+
+          <h2 id="previewName">
+            Your Name
+          </h2>
+
         </div>
 
 
@@ -236,7 +322,11 @@
           class="draggable username-box"
           data-key="username"
         >
-          <p id="previewUsername">@username</p>
+
+          <p id="previewUsername">
+            @username
+          </p>
+
         </div>
 
 
@@ -244,7 +334,11 @@
           class="draggable bio-box"
           data-key="bio"
         >
-          <p id="previewBio">Tell people a little about yourself...</p>
+
+          <p id="previewBio">
+            Tell people a little about yourself...
+          </p>
+
         </div>
 
 
@@ -252,17 +346,36 @@
           class="draggable audio-player-box"
           data-key="audio"
         >
+
           <div class="audio-title">
-            <span class="audio-icon">♫</span>
+
+            <span class="audio-icon">
+              ♫
+            </span>
+
             <div>
-              <strong>Audio</strong>
-              <small>Add audio from the builder.</small>
+
+              <strong>
+                Audio
+              </strong>
+
+              <small>
+                Add audio from the builder.
+              </small>
+
             </div>
+
           </div>
 
-          <audio id="audioPlayer" controls></audio>
+          <audio
+            id="audioPlayer"
+            controls
+          ></audio>
 
-          <div id="audioName">No audio selected</div>
+          <div id="audioName">
+            No audio selected
+          </div>
+
         </div>
 
 
@@ -270,7 +383,9 @@
           class="draggable links-box"
           data-key="links"
         >
+
           <div id="previewLinks"></div>
+
         </div>
 
 
@@ -278,8 +393,11 @@
           class="draggable sections-box"
           data-key="sections"
         >
+
           <div id="previewSections"></div>
+
         </div>
+
 
       </div>
 
@@ -292,15 +410,21 @@
 
 <section id="premium" class="premium">
 
-  <div class="eyebrow">XYLORA PREMIUM</div>
+  <div class="eyebrow">
+    XYLORA PREMIUM
+  </div>
 
-  <h2>Unlock more of your world.</h2>
+  <h2>
+    Unlock more of your world.
+  </h2>
 
   <p>
     Animated profiles, custom backgrounds, and more.
   </p>
 
-  <div class="premium-price">$10/month</div>
+  <div class="premium-price">
+    $10/month
+  </div>
 
 </section>
 
