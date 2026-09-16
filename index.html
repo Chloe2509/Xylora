@@ -6,7 +6,8 @@
 
   <title>Xylora</title>
 
-<link rel="icon" type="image/png" href="./59727984-040b-49bd-bbc5-be96f22d3be8.png?v=2">
+  <link rel="icon" type="image/png" href="59727984-040b-49bd-bbc5-be96f22d3be8.png">
+
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -16,8 +17,16 @@
 
   <div class="logo">
     <svg class="xylora-logo" viewBox="0 0 300 90">
+
       <defs>
-        <linearGradient id="xyloraPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+
+        <linearGradient
+          id="xyloraPurple"
+          x1="0%"
+          y1="0%"
+          x2="100%"
+          y2="100%"
+        >
           <stop offset="0%" stop-color="#ffffff"/>
           <stop offset="35%" stop-color="#d7a8ff"/>
           <stop offset="70%" stop-color="#9b5cff"/>
@@ -25,13 +34,21 @@
         </linearGradient>
 
         <filter id="xyloraGlow">
-          <feGaussianBlur stdDeviation="3" result="blur"/>
+
+          <feGaussianBlur
+            stdDeviation="3"
+            result="blur"
+          />
+
           <feMerge>
             <feMergeNode in="blur"/>
             <feMergeNode in="SourceGraphic"/>
           </feMerge>
+
         </filter>
+
       </defs>
+
 
       <ellipse
         cx="78"
@@ -45,6 +62,7 @@
         filter="url(#xyloraGlow)"
       />
 
+
       <ellipse
         cx="78"
         cy="45"
@@ -57,6 +75,7 @@
         transform="rotate(-22 78 45)"
       />
 
+
       <text
         x="35"
         y="67"
@@ -68,11 +87,13 @@
         filter="url(#xyloraGlow)"
       >X</text>
 
+
       <path
         d="M78 7 L82 19 L94 23 L82 27 L78 40 L74 27 L62 23 L74 19 Z"
         fill="#e1baff"
         filter="url(#xyloraGlow)"
       />
+
 
       <text
         x="94"
@@ -82,8 +103,10 @@
         font-weight="bold"
         fill="#f2eaff"
       >ylora</text>
+
     </svg>
   </div>
+
 
   <nav>
     <a href="#home">Home</a>
@@ -91,9 +114,13 @@
     <a href="#premium">Premium</a>
   </nav>
 
-  <button id="planButton">🆓 Free</button>
+
+  <button id="planButton">
+    🆓 Free
+  </button>
 
 </header>
+
 
 
 <section id="home" class="hero">
@@ -104,23 +131,33 @@
       BUILD YOUR PROFILE
     </div>
 
+
     <h1>
       Create a profile that's<br>
       uniquely you.
     </h1>
+
 
     <p>
       Customize your profile, add links and audio,
       and move everything exactly where you want it.
     </p>
 
+
     <div class="hero-buttons">
 
-      <a href="#builder" class="primary-btn">
+      <a
+        href="#builder"
+        class="primary-btn"
+      >
         Start building ✦
       </a>
 
-      <a href="#premium" class="secondary-btn">
+
+      <a
+        href="#premium"
+        class="secondary-btn"
+      >
         💎 Premium — $10/month
       </a>
 
@@ -131,48 +168,116 @@
 </section>
 
 
+
 <section id="builder" class="builder">
+
 
   <div class="controls">
 
-    <h2>Make it yours.</h2>
+    <h2>
+      Make it yours.
+    </h2>
 
-    <label>Display name</label>
-    <input id="displayName" value="Your Name">
 
-    <label>Username</label>
-    <input id="username" value="@username">
+    <label>
+      Display name
+    </label>
 
-    <label>Bio</label>
+    <input
+      id="displayName"
+      value="Your Name"
+    >
+
+
+    <label>
+      Username
+    </label>
+
+    <input
+      id="username"
+      value="@username"
+    >
+
+
+    <label>
+      Bio
+    </label>
+
     <textarea id="bio">Tell people a little about yourself...</textarea>
 
-    <label>Profile picture</label>
-    <input id="avatarInput" type="file" accept="image/*">
+
+    <label>
+      Profile picture
+    </label>
+
+    <input
+      id="avatarInput"
+      type="file"
+      accept="image/*"
+    >
+
 
     <small>
       Free: still pictures. Premium: animated GIF/WebP.
     </small>
 
-    <label>Plan</label>
+
+    <label>
+      Plan
+    </label>
 
     <select id="planSelect">
-      <option value="free">Free</option>
-      <option value="premium">Premium</option>
+
+      <option value="free">
+        Free
+      </option>
+
+      <option value="premium">
+        Premium
+      </option>
+
     </select>
 
-    <label>Background</label>
+
+    <label>
+      Background
+    </label>
+
 
     <div class="color-row">
-      <input id="bgColor" type="color" value="#15102e">
-      <input id="bgColor2" type="color" value="#633cff">
+
+      <input
+        id="bgColor"
+        type="color"
+        value="#15102e"
+      >
+
+      <input
+        id="bgColor2"
+        type="color"
+        value="#633cff"
+      >
+
     </div>
 
+
     <select id="backgroundStyle">
-      <option value="gradient">Gradient</option>
-      <option value="solid">Solid</option>
+
+      <option value="gradient">
+        Gradient
+      </option>
+
+      <option value="solid">
+        Solid
+      </option>
+
     </select>
 
-    <label>Premium background</label>
+
+    <label>
+      Premium background
+    </label>
+
 
     <input
       id="bgImageInput"
@@ -180,17 +285,38 @@
       accept="image/*"
     >
 
-    <label>Font</label>
+
+    <label>
+      Font
+    </label>
+
 
     <select id="fontSelect">
-      <option value="Georgia, serif">Elegant Serif</option>
-      <option value="Arial, sans-serif">Modern</option>
-      <option value="Verdana, sans-serif">Clean</option>
-      <option value="'Courier New', monospace">Monospace</option>
+
+      <option value="Georgia, serif">
+        Elegant Serif
+      </option>
+
+      <option value="Arial, sans-serif">
+        Modern
+      </option>
+
+      <option value="Verdana, sans-serif">
+        Clean
+      </option>
+
+      <option value="'Courier New', monospace">
+        Monospace
+      </option>
+
     </select>
 
 
-    <h3>🎵 Audio</h3>
+
+    <h3>
+      🎵 Audio
+    </h3>
+
 
     <input
       id="audioInput"
@@ -199,7 +325,11 @@
     >
 
 
-    <h3>Links</h3>
+
+    <h3>
+      Links
+    </h3>
+
 
     <div class="button-grid">
 
@@ -238,7 +368,11 @@
     </div>
 
 
-    <h3>Sections</h3>
+
+    <h3>
+      Sections
+    </h3>
+
 
     <div class="button-grid">
 
@@ -261,6 +395,7 @@
     </div>
 
 
+
     <div class="layout-buttons">
 
       <button id="resetLayout">
@@ -273,6 +408,7 @@
 
     </div>
 
+
     <p id="status">
       Free plan
     </p>
@@ -280,11 +416,13 @@
   </div>
 
 
+
   <div class="preview-area">
 
     <div class="preview-title">
       Live preview
     </div>
+
 
     <div id="canvas">
 
@@ -296,13 +434,17 @@
           data-key="avatar"
         >
 
-          <img id="avatar" alt="">
+          <img
+            id="avatar"
+            alt=""
+          >
 
           <span class="avatar-placeholder">
             Profile Picture
           </span>
 
         </div>
+
 
 
         <div
@@ -317,6 +459,7 @@
         </div>
 
 
+
         <div
           class="draggable username-box"
           data-key="username"
@@ -327,6 +470,7 @@
           </p>
 
         </div>
+
 
 
         <div
@@ -341,6 +485,7 @@
         </div>
 
 
+
         <div
           class="draggable audio-player-box"
           data-key="audio"
@@ -351,6 +496,7 @@
             <span class="audio-icon">
               ♫
             </span>
+
 
             <div>
 
@@ -366,16 +512,19 @@
 
           </div>
 
+
           <audio
             id="audioPlayer"
             controls
           ></audio>
+
 
           <div id="audioName">
             No audio selected
           </div>
 
         </div>
+
 
 
         <div
@@ -386,6 +535,7 @@
           <div id="previewLinks"></div>
 
         </div>
+
 
 
         <div
@@ -407,25 +557,33 @@
 </section>
 
 
-<section id="premium" class="premium">
+
+<section
+  id="premium"
+  class="premium"
+>
 
   <div class="eyebrow">
     XYLORA PREMIUM
   </div>
 
+
   <h2>
     Unlock more of your world.
   </h2>
 
+
   <p>
     Animated profiles, custom backgrounds, and more.
   </p>
+
 
   <div class="premium-price">
     $10/month
   </div>
 
 </section>
+
 
 
 <script src="script.js"></script>
