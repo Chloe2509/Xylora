@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xylora — Login</title>
+<link rel="icon" href="/Xylora/favicon.png?v=1000">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<section class="auth-screen">
+<div class="auth-card">
+<h1 id="authTitle">Welcome to Xylora</h1>
+<p id="authSubtitle">Log in to continue to your profile.</p>
+<input id="authEmail" type="email" placeholder="Email" autocomplete="email">
+<input id="authPassword" type="password" placeholder="Password" autocomplete="current-password">
+<button id="authSubmit" class="auth-button">Log In</button>
+<div class="auth-divider">or</div>
+<button id="discordLogin" class="auth-button auth-secondary">Continue with Discord</button>
+<div id="authMessage" class="auth-message"></div>
+<div class="auth-toggle"><span id="authToggleText">Don't have an account?</span> <button id="authToggle">Sign Up</button></div>
+</div>
+</section>
+<script src="auth.js"></script>
+</body>
+</html>
