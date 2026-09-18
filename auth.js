@@ -55,11 +55,11 @@ $("authSubmit").onclick = async () => {
 
   const result =
     mode === "signup"
-      ? await supabase.auth.signUp({
+      ? await supabaseClient.auth.signUp({
           email,
           password
         })
-      : await supabase.auth.signInWithPassword({
+      : await supabaseClient.auth.signInWithPassword({
           email,
           password
         });
@@ -85,7 +85,7 @@ $("discordLogin").onclick = async () => {
     "Opening Discord...";
 
   const result =
-    await supabase.auth.signInWithOAuth({
+    await supabaseClient.auth.signInWithOAuth({
       provider: "discord",
       options: {
         redirectTo:
@@ -103,7 +103,7 @@ $("discordLogin").onclick = async () => {
 async function checkLogin() {
 
   const { data } =
-    await supabase.auth.getSession();
+    await supabaseClient.auth.getSession();
 
   if (data.session) {
     window.location.href = "builder.html";
