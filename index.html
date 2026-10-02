@@ -1,431 +1,696 @@
-🌌 XYLORA — COMPLETE PLAN
-🪐 1. What Xylora is
-Xylora is a profile-platform where anyone can create their own personalized profile.
-A user gets a profile like:
-xylora.com/@username
-Their profile can contain:
-👤 Profile picture
-✍️ Name
-@ Username
-📝 Bio
-🔗 Links
-🎵 Music
-🖼️ Photos
-🎥 Videos
-📁 Files
-💼 Work
-🎮 Gaming
-🌎 Communities
-📊 Stats
-And much more
-The main idea is:
-Your profile. Your layout. Your identity.
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-🔐 2. Account system
-The flow is:
-Xylora → Log in / Sign up → Profile Builder → Your profile
-Users can create an account with:
-📧 Email + password
-🎮 Discord
-Google
-Users do not need GitHub to use Xylora.
+  <meta name="theme-color" content="#120728">
+  <meta name="description" content="Xylora — Your personal universe.">
 
-🎨 3. Profile builder
-The builder lets users customize basically everything.
-Profile basics
-Display name
-Username
-Bio
-Profile picture
-Background
-Fonts
-Colors
-Gradients
-Positioning
-Everything can be moved independently.
-For example:
-Name can be here
-Username somewhere else
-Bio somewhere else
-Music somewhere else
-Links somewhere else
-Users aren't forced into one rigid layout.
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="/Xylora/favicon.png?v=1000">
 
-🧩 4. Profile blocks
-Users can add blocks such as:
-Text
-Links
-Music
-Gallery
-Video
-Files
-Guestbook
-Stats
-Countdown
-Game
-Socials
-Custom blocks
-Eventually blocks can be:
-Moved
-Resized
-Rotated
-Duplicated
-Deleted
-Grouped
+  <title>Xylora</title>
 
-🌌 5. Themes
-There will be theme presets such as:
-🌌 Galaxy
-🌈 Aurora
-🌊 Ocean
-🌅 Sunset
-🤖 Cyber
-⚪ Minimal
-But users aren't locked into a theme.
-They can customize individual parts themselves.
+  <link rel="stylesheet" href="style.css">
 
-✨ 6. Effects system
-This was an important decision:
-Free users get real effects.
-They aren't forced to have a boring profile.
-Free effects
-⭐ Stars
-✦ Small sparkles
-🌌 Basic galaxy
-✨ Basic glow
-🌈 Basic gradients
-💫 Simple floating particles
-Premium effects
-🌠 Moving stars
-🪐 Galaxy particles
-🖱️ Mouse-following particles
-🌊 Click ripples
-💫 Floating objects
-🌈 Animated gradients
-🌌 Interactive galaxy
-✨ Advanced glow
-🎨 More particle styles
-🌀 More animations
-🖼️ Animated/image backgrounds
-🪄 Custom cursor effects
-And users choose which effects they want individually.
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
 
-👤 7. Profile pictures
-Free
-Still images.
-Premium
-Can additionally use:
-GIF
-WebP
-Animated profile pictures
+<body>
 
-🖼️ 8. Backgrounds
-Free
-Users can use:
-Solid colors
-Gradients
-Basic effects
-Premium
-Can additionally use:
-Image backgrounds
-Animated backgrounds
-Advanced backgrounds
-More effects
+<!-- =========================
+     LOGIN / SIGN UP
+========================= -->
 
-🎵 9. Music
-Users can add music to their profile.
-We've specifically added/planned:
-Upload an audio file
-Spotify links
-Spotify song player
-Multiple songs
-Playlists
-Choose the first song
-Album artwork
-Currently playing
-And the Spotify feature is based around:
-Paste a Spotify song link
-rather than making users search through Spotify inside Xylora.
-Future music integrations:
-Spotify
-YouTube Music
-SoundCloud
+<div id="auth" class="auth">
 
-🔗 10. Social links
-Users can add:
-Instagram
-TikTok
-YouTube
-Twitch
-Bluesky
-X
-Reddit
-Discord
-GitHub
-Steam
-Spotify
-Pinterest
-Snapchat
-Custom links
+  <div class="card">
 
-🖼️ 11. Media
-Profiles can eventually contain:
-Photos
-GIFs
-Videos
-Albums
-Files
-Projects
-Downloads
+    <h1>✦ Xylora</h1>
 
-📊 12. Analytics
-Users can eventually see:
-Profile views
-Link clicks
-Spotify clicks
-Broad visitor location
-Most-clicked links
-Views over time
+    <p>Your personal universe.</p>
 
-🌎 13. Profile discovery
-Xylora will eventually have a Discover system.
-Categories could include:
-🎵 Musicians
-🎨 Artists
-💻 Developers
-🎮 Gamers
-🎥 Creators
-🌐 Communities
-Users can discover other Xylora profiles.
+    <input
+      id="email"
+      type="email"
+      placeholder="Email"
+      autocomplete="email"
+    >
 
-👥 14. Following
-Planned:
-Follow profiles
-Followers
-Following list
-Public directory
-Profile sharing
+    <input
+      id="password"
+      type="password"
+      placeholder="Password"
+      autocomplete="current-password"
+    >
 
-💬 15. Community features
-Planned:
-Guestbooks
-Comments/interactions
-Community rules
-Profile sharing
-Report
-Block
-Spam protection
-Moderation tools
+    <button id="authBtn">
+      Log in
+    </button>
 
-🔒 16. Privacy
-Users will be able to control visibility:
-🌎 Public
-🔗 Unlisted
-🔒 Private
-They can also control things like:
-Which sections appear
-Analytics
-Guestbook
-Other interactions
+    <button id="signup">
+      Sign up
+    </button>
 
-🌍 17. Xylora Worlds
-This is one of the bigger ideas.
-Instead of having only one profile, users could have connected Worlds.
-For example:
-🌎 Main World
-Their main profile.
-🎵 Music World
-Music and playlists.
-🎨 Art World
-Artwork and galleries.
-🎮 Gaming World
-Games, achievements, gaming profiles.
-💼 Projects World
-Projects and work.
-📁 Files World
-Downloads and files.
-So Xylora becomes more than just a profile page.
+    <button id="discord">
+      🎮 Continue with Discord
+    </button>
 
-🧬 18. Profile DNA
-Every profile could develop its own unique visual identity based on the user's:
-Colors
-Fonts
-Effects
-Layout
-Blocks
-Background
-Style
-The goal is for two Xylora profiles to feel completely different.
+    <button id="google">
+      G Continue with Google
+    </button>
 
-🗺️ 19. Profile Map
-A visual way to see how someone's profile/worlds connect.
-For example:
-Main Profile
-↳ Music
- ↳ Art
- ↳ Gaming
- ↳ Projects
- ↳ Files
+    <p id="msg"></p>
 
-🎭 20. Multiple profile modes
-Users could have different versions of their profile:
-☀️ Day
-🌙 Night
-🎮 Gaming
-🎵 Music
-🎨 Art
+  </div>
 
-🎲 21. Surprise Me
-A button that automatically creates a random design.
-It could randomize:
-Colors
-Background
-Effects
-Fonts
-Layout
-Decorations
+</div>
 
-🤖 22. Smart Profile Builder
-Eventually Xylora could ask what kind of profile someone wants and help build it around that.
-For example:
-Musician
-→ music-focused layout
-Artist
-→ gallery-focused layout
-Developer
-→ project/GitHub-focused layout
 
-🥚 23. Easter eggs
-Hidden things users can discover throughout Xylora.
+<!-- =========================
+     MAIN APP
+========================= -->
 
-🎬 24. Animations
-Planned:
-Entrance animations
-Profile transitions
-Animated blocks
-Hover effects
-Advanced effects
-Interactive backgrounds
+<div id="app" hidden>
 
-🕘 25. Profile history
-Users could save previous versions of their profile.
-Then restore an older version if they change their mind.
+<header>
 
-📦 26. Import / Export
-Users could eventually:
-Export their profile
-Import profile data
-Back up their configuration
+  <b>✦ Xylora</b>
 
-🏆 27. Achievements
-Users could earn profile achievements/badges.
-Examples:
-Creator
-Musician
-Developer
-Early Xylora user
-Profile milestone badges
+  <nav>
 
-✅ 28. Verification
-Planned badges for things such as:
-Verified profile
-Verified Discord
-Verified GitHub
-Creator badge
+    <a href="#builder">
+      Builder
+    </a>
 
-🧱 29. Block marketplace
-Eventually users could create/share custom profile blocks.
-For example:
-“Someone made a really cool music player block.”
-Other users could add it to their profile.
+    <a href="#preview">
+      Preview
+    </a>
 
-🎨 30. Custom CSS
-This is planned as a Premium feature for people who want extremely advanced customization.
+    <a href="#premium">
+      Premium
+    </a>
 
-💎 31. Premium
-The Premium system we settled on is:
-🆓 Free
-The core Xylora experience stays usable for free.
-💎 Premium
-Users get things like:
-Animated profile pictures
-Advanced backgrounds
-Advanced effects
-More fonts
-More colors/styles
-Advanced animations
-More customization
-Advanced blocks
-Analytics
-Custom CSS
-More storage
-Custom profile domain
-Remove Xylora branding
-Premium trial
-4-month free trial
-After that, the plan we most recently settled on was:
-$15 one-time payment → Premium forever.
+    <button id="logout">
+      Log out
+    </button>
 
-✦ 32. Xylora branding
-This is the feature we just worked on.
-Free profile
-At the bottom:
-✦ Made with Xylora ✦
-Premium profile
-Premium users can remove it.
-So Premium can look like:
-This is completely my profile.
-while Free profiles still have a small Xylora connection.
+  </nav>
 
-📱 33. Profile design
-The overall visual direction we've been using is:
-🌌 Dark galaxy
-💜 Purple/lavender
-✨ Glowing elements
-🌙 Cosmic backgrounds
-Rounded cards
-Neon borders
-Modern futuristic UI
-Strong personalization
-But users aren't restricted to that style.
+</header>
 
-🪐 34. Xylora's bigger identity
-The goal has evolved from simply:
-“A profile website.”
-into:
-A customizable personal universe.
-A person could have:
-Xylora Profile
- ↓
- Music World
- Art World
- Gaming World
- Projects World
- Files World
-with their own design, links, media, music, communities, and identity.
 
-💻 35. What is already in the project
-The current project already has pieces of:
-Xylora branding
-Login/signup
-Supabase authentication setup
-Discord authentication setup
-Profile builder
-Dragging profile elements
-Profile picture upload
-Free/Premium selection
-Background customization
-Fonts
-Social links
-Sections
-Audio upload
-Spotify player
-Premium trial display
-Favicon
-Google Search Console verification
-GitHub Pages deployment
-Some of the larger features above are planned, not fully implemented yet.
-The big picture
-Xylora =
-👤 Identity + 🔗 Links + 🎵 Music + 🖼️ Media + 💼 Work + 🎮 Gaming + 🌎 Communities + ✨ Customization + 🌌 Worlds
-all inside one personal profile system.
+<main>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+  <p>BUILD YOUR PROFILE</p>
+
+  <h1>
+    Your profile.<br>
+    Your universe.
+  </h1>
+
+  <a href="#builder">
+    Start building ✦
+  </a>
+
+</section>
+
+
+<!-- =========================
+     BUILDER
+========================= -->
+
+<section id="builder" class="builder">
+
+
+<!-- BUILDER PANEL -->
+
+<aside class="panel">
+
+  <h2>
+    Profile Builder
+  </h2>
+
+
+  <!-- PROFILE -->
+
+  <h3>👤 Profile</h3>
+
+  <input
+    id="name"
+    placeholder="Display name"
+  >
+
+  <input
+    id="username"
+    placeholder="@username"
+  >
+
+  <textarea
+    id="bio"
+    placeholder="Bio"
+  ></textarea>
+
+  <input
+    id="avatar"
+    type="file"
+    accept="image/*"
+  >
+
+
+  <!-- DESIGN -->
+
+  <h3>🎨 Design</h3>
+
+  <select id="font">
+
+    <option>
+      Georgia, serif
+    </option>
+
+    <option>
+      Arial, sans-serif
+    </option>
+
+    <option>
+      Verdana, sans-serif
+    </option>
+
+    <option>
+      Courier New, monospace
+    </option>
+
+  </select>
+
+
+  <label>
+    Background color
+  </label>
+
+  <input
+    id="c1"
+    type="color"
+    value="#24104f"
+  >
+
+
+  <label>
+    Second color
+  </label>
+
+  <input
+    id="c2"
+    type="color"
+    value="#6d4aff"
+  >
+
+
+  <select id="theme">
+
+    <option>
+      Custom
+    </option>
+
+    <option>
+      Galaxy
+    </option>
+
+    <option>
+      Aurora
+    </option>
+
+    <option>
+      Ocean
+    </option>
+
+    <option>
+      Sunset
+    </option>
+
+    <option>
+      Cyber
+    </option>
+
+    <option>
+      Minimal
+    </option>
+
+  </select>
+
+
+  <!-- EFFECTS -->
+
+  <h3>✨ Effects</h3>
+
+  <label>
+
+    <input
+      class="effect"
+      data-e="stars"
+      type="checkbox"
+      checked
+    >
+
+    ⭐ Stars
+
+  </label>
+
+
+  <label>
+
+    <input
+      class="effect"
+      data-e="sparkles"
+      type="checkbox"
+    >
+
+    ✦ Sparkles
+
+  </label>
+
+
+  <label>
+
+    <input
+      class="premiumEffect"
+      type="checkbox"
+    >
+
+    🌠 Moving stars
+
+  </label>
+
+
+  <label>
+
+    <input
+      class="premiumEffect"
+      type="checkbox"
+    >
+
+    🪐 Galaxy particles
+
+  </label>
+
+
+  <label>
+
+    <input
+      class="premiumEffect"
+      type="checkbox"
+    >
+
+    🌊 Click ripples
+
+  </label>
+
+
+  <!-- BLOCKS -->
+
+  <h3>🧩 Blocks</h3>
+
+  <div class="grid">
+
+    <button data-block="text">
+      Text
+    </button>
+
+    <button data-block="links">
+      Links
+    </button>
+
+    <button data-block="music">
+      Music
+    </button>
+
+    <button data-block="gallery">
+      Gallery
+    </button>
+
+    <button data-block="video">
+      Video
+    </button>
+
+    <button data-block="files">
+      Files
+    </button>
+
+    <button data-block="guestbook">
+      Guestbook
+    </button>
+
+    <button data-block="stats">
+      Stats
+    </button>
+
+    <button data-block="countdown">
+      Countdown
+    </button>
+
+    <button data-block="game">
+      Game
+    </button>
+
+    <button data-block="socials">
+      Socials
+    </button>
+
+    <button data-block="custom">
+      Custom
+    </button>
+
+  </div>
+
+
+  <!-- MUSIC -->
+
+  <h3>🎵 Music</h3>
+
+  <input
+    id="audio"
+    type="file"
+    accept="audio/*"
+  >
+
+  <input
+    id="spotify"
+    type="url"
+    placeholder="Paste a Spotify song link"
+  >
+
+  <button id="addSpotify">
+    🎧 Add Spotify
+  </button>
+
+
+  <!-- SOCIALS -->
+
+  <h3>🔗 Socials</h3>
+
+  <div class="grid">
+
+    <button data-social="Instagram">
+      Instagram
+    </button>
+
+    <button data-social="TikTok">
+      TikTok
+    </button>
+
+    <button data-social="YouTube">
+      YouTube
+    </button>
+
+    <button data-social="Twitch">
+      Twitch
+    </button>
+
+    <button data-social="Bluesky">
+      Bluesky
+    </button>
+
+    <button data-social="X">
+      X
+    </button>
+
+    <button data-social="Reddit">
+      Reddit
+    </button>
+
+    <button data-social="Discord">
+      Discord
+    </button>
+
+    <button data-social="GitHub">
+      GitHub
+    </button>
+
+    <button data-social="Steam">
+      Steam
+    </button>
+
+    <button data-social="Spotify">
+      Spotify
+    </button>
+
+    <button data-social="Pinterest">
+      Pinterest
+    </button>
+
+    <button data-social="Snapchat">
+      Snapchat
+    </button>
+
+    <button data-social="Custom">
+      Custom
+    </button>
+
+  </div>
+
+
+  <!-- WORLDS -->
+
+  <h3>🌍 Worlds</h3>
+
+  <div class="grid">
+
+    <button data-world="Music">
+      Music
+    </button>
+
+    <button data-world="Art">
+      Art
+    </button>
+
+    <button data-world="Gaming">
+      Gaming
+    </button>
+
+    <button data-world="Projects">
+      Projects
+    </button>
+
+    <button data-world="Files">
+      Files
+    </button>
+
+  </div>
+
+
+  <!-- PLAN -->
+
+  <h3>💎 Plan</h3>
+
+  <select id="plan">
+
+    <option value="free">
+      Free
+    </option>
+
+    <option value="premium">
+      Premium — 4 Month Free Trial
+    </option>
+
+  </select>
+
+
+  <label>
+
+    <input
+      id="branding"
+      type="checkbox"
+      checked
+    >
+
+    Show “Made with Xylora”
+
+  </label>
+
+
+  <button id="save">
+    Save profile
+  </button>
+
+
+  <button id="reset">
+    Reset layout
+  </button>
+
+</aside>
+
+
+<!-- =========================
+     PREVIEW
+========================= -->
+
+<section id="preview" class="preview">
+
+  <h2>
+    Live Preview
+  </h2>
+
+
+  <div id="canvas">
+
+    <div id="profile">
+
+
+      <!-- AVATAR -->
+
+      <div
+        class="drag avatar"
+        data-k="avatar"
+      >
+
+        <img
+          id="avatarImg"
+          alt="Profile picture"
+        >
+
+        <span>
+          X
+        </span>
+
+      </div>
+
+
+      <!-- NAME -->
+
+      <div
+        class="drag nm"
+        data-k="name"
+      >
+
+        <h2 id="pname">
+          Your Name
+        </h2>
+
+      </div>
+
+
+      <!-- USERNAME -->
+
+      <div
+        class="drag un"
+        data-k="username"
+      >
+
+        <span id="un">
+          @username
+        </span>
+
+      </div>
+
+
+      <!-- BIO -->
+
+      <div
+        class="drag bio"
+        data-k="bio"
+      >
+
+        Your bio goes here.
+
+      </div>
+
+
+      <!-- MUSIC -->
+
+      <div
+        class="drag music"
+        data-k="music"
+      >
+
+        <b>
+          ♫ Music
+        </b>
+
+
+        <audio
+          id="player"
+          controls
+        ></audio>
+
+
+        <iframe
+          id="sp"
+          hidden
+          height="152"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        ></iframe>
+
+      </div>
+
+
+      <!-- LINKS -->
+
+      <div
+        class="drag links"
+        data-k="links"
+        id="links"
+      ></div>
+
+
+      <!-- WORLDS -->
+
+      <div
+        class="drag worlds"
+        data-k="worlds"
+        id="worlds"
+      ></div>
+
+
+      <!-- BRANDING -->
+
+      <div id="badge">
+        ✦ Made with Xylora ✦
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+</section>
+
+
+<!-- =========================
+     PREMIUM
+========================= -->
+
+<section
+  id="premium"
+  class="premium"
+>
+
+  <h2>
+    Premium — 4 Month Free Trial
+  </h2>
+
+  <p>
+    Advanced effects, animated media,
+    analytics, custom CSS, more storage,
+    custom domains and branding removal.
+  </p>
+
+</section>
+
+
+</main>
+
+</div>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>
