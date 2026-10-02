@@ -1,0 +1,10 @@
+{
+  "name": "Xylora",
+  "short_name": "Xylora",
+  "description": "Your personal universe.",
+  "start_url": "/Xylora/",
+  "display": "standalone",
+  "background_color": "#080412",
+  "theme_color": "#120728",
+  "orientation": "portrait"
+}
